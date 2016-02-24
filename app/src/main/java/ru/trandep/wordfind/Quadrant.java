@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public  class Quadrant {
     int id;
+    String letterFromTextView;
     static ArrayList<Quadrant> allQuadrant = new ArrayList<Quadrant>();
 
     int startX; //X координата левой верхней точки квадранта
@@ -24,6 +25,8 @@ public  class Quadrant {
         //делаем id квадранта такой же как id TextView
         this.id = view.getId();
 
+        //Записываем букву из TextView в переменную
+        this.letterFromTextView =(String) view.getText();
 
         //Получаем координаты начальной (левой верхней) точки View относительно края Экрана
         int[] startAndEndPointTextViewOnParentView;

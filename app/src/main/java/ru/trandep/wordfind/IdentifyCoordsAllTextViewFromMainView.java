@@ -13,8 +13,11 @@ import java.util.ArrayList;
  * LinerLayout уже могут быть несколько дочерних элементов (тоже LinerLayout, но vertical), а уже в этиих вертикальных лайаутах, будут лежать нужные нам TextView.
  */
 public class IdentifyCoordsAllTextViewFromMainView {
-
+    //список всех TextView (в которых Буквы)
     ArrayList<TextView> listAllTextVeiwFromMainView = new ArrayList<TextView>();
+    // список TextView заполняющийся динамически - те TV по которым прошёлся тачлистенер
+    ArrayList<TextView> listDynamicTextViewTouched = new ArrayList<TextView>();
+
 
 
     public IdentifyCoordsAllTextViewFromMainView(ViewGroup v){ //на входе в метод подали контейнер View элементов
@@ -29,15 +32,16 @@ public class IdentifyCoordsAllTextViewFromMainView {
         int lengthFromScreenEdgeToViewVbyY = startAndEndPointV[1];
         int lengthFromScreenEdgeToViewVbyX = startAndEndPointV[0];
 
-        //У следующего контейнера (предполагается первый LL(вертикальный) мы не знаем сколько элементов. Нужно узнать
+        //У следующего контейнера (предполагается первый LL(вертикальный) мы не знаем сколько дочерних элементов. Нужно узнать
         int countChildFromV2 = v2.getChildCount();
         //Заходим в цикл и перебираем все контейнеры (тоже LL, но горизонтальные) в контейнере LL(вертикальном)
         for (int i = 0; i < countChildFromV2 ; i++) {
-            //берем первый горизонтальный LL
+            //в цикле берем первый горизонтальный LL
             ViewGroup v3 = (ViewGroup) v2.getChildAt(i);    //TODO переделать на коллекцию
-            //идём по каждому TextView который содержится в этом LL
+            //заходим в ещё один цикл и идём по каждому TextView который содержится в этом LL
             for (int j = 0; j <v3.getChildCount() ; j++) {
-                //ОСТАНОВИЛСЯ ТУТ - нужно записать в список (как минимум) двумерных массивов координаты всех TextView. Перепридумал - записать в коллекцию все TexTview элементы
+                //ОСТАНОВИЛСЯ ТУТ - нужно записать в список (как минимум) двумерных массивов координаты всех TextView.
+                // Перепридумал - записать в коллекцию все TexTview элементы
                 this.listAllTextVeiwFromMainView.add((TextView)v3.getChildAt(j));
                 //создаём специальный объект клсса квадрант, который имеет одинаковый id, что и TextView, и хранит в себе координаты плащади TextView
                 Quadrant q1 = new Quadrant((TextView)v3.getChildAt(j), lengthFromScreenEdgeToViewVbyX,lengthFromScreenEdgeToViewVbyY);
@@ -48,7 +52,7 @@ public class IdentifyCoordsAllTextViewFromMainView {
     }
 
     //Метод, который сообщает ID квадранта (он в свою очередь совпадает с id TextView) по координатам
-    public int getIdTextViewByCoords (int x, int y){
+    public int getIdTextViewByCoords (float x, float y){
 
         int id = 0;
         //идем по статик коллекции всех квадрантов
@@ -57,6 +61,32 @@ public class IdentifyCoordsAllTextViewFromMainView {
                 id = q.id;      //то записываем его id
         }
         return id;
+    }
+
+    //Метод возращающий Text у TextView по координатам.
+    public String getTextFromTextViewByCoords (float x, float y){
+        String result = "";
+        int id = this.getIdTextViewByCoords(x,y);
+        for (Quadrant q : Quadrant.allQuadrant){
+            if (q.id == id) {
+                result = q.letterFromTextView;
+            }
+        }
+        return result;
+    }
+
+    //метод записывающий TextView в listDynamicTextViewTouched. Метод не добавляет те textView по которым уже был проведен
+    public void fillinglistDynamicTextViewTouched (float x, float y){
+
+        int id = this.getIdTextViewByCoords(x,y);
+        for (TextView tv: listAllTextVeiwFromMainView){
+            if (tv.getId() == id){
+                if (listDynamicTextViewTouched.contains(tv)){
+                    break;
+                }
+                else listDynamicTextViewTouched.add(tv);
+            }
+        }
     }
 
 
