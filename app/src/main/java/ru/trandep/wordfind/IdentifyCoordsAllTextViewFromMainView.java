@@ -17,6 +17,8 @@ public class IdentifyCoordsAllTextViewFromMainView {
     ArrayList<TextView> listAllTextVeiwFromMainView = new ArrayList<TextView>();
     // список TextView заполняющийся динамически - те TV по которым прошёлся тачлистенер
     ArrayList<TextView> listDynamicTextViewTouched = new ArrayList<TextView>();
+    //(пояснение - список списков) список listDynamicTextViewTouched - хранит все списки тачей по одному полю букв
+    ArrayList<ArrayList<TextView>> listListsTouch = new ArrayList<>();
 
 
 
@@ -51,7 +53,7 @@ public class IdentifyCoordsAllTextViewFromMainView {
 
     }
 
-    //Метод, который сообщает ID квадранта (он в свою очередь совпадает с id TextView) по координатам
+    //Метод, который возвращает ID квадранта (он в свою очередь совпадает с id TextView) по координатам
     public int getIdTextViewByCoords (float x, float y){
 
         int id = 0;
@@ -88,6 +90,11 @@ public class IdentifyCoordsAllTextViewFromMainView {
             }
         }
     }
+
+//    //Метод возвращающий TextView в кратковременный список listNowTimeTouched
+//    public void newListNowTime (float x, float y){
+//
+//    }
 
 
 }
