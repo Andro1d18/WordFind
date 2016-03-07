@@ -40,8 +40,6 @@ public class MyButton extends Button {
 //                int width = getWidth();
 //                int height = getHeight();
 //                canvas.drawCircle(width/2, height/2, height/3, paint);
-                Painter painter = new Painter();
-                painter.drawColumn(canvas,0,00,20,20);
 
                 super.onDraw(canvas);
 

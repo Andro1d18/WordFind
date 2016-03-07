@@ -5,8 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by zhezlov on 27.02.2016.
@@ -14,6 +19,7 @@ import android.widget.FrameLayout;
 
     //мой подкласс фраймлайаута для переопределения рисования (onDraw) и рисования
 public class MyFrameLayout extends FrameLayout {
+
 
     public MyFrameLayout (Context context){
         super(context);
@@ -29,6 +35,9 @@ public class MyFrameLayout extends FrameLayout {
         this.setWillNotDraw(false);
     }
     Paint p = new Paint();
+
+
+
     @Override
     protected void onDraw(Canvas canvas){
 

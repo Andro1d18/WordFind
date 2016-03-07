@@ -39,15 +39,26 @@
 
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp">
+
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/surface"
+            android:layout_gravity="center" />
+
         <ru.trandep.wordfind.MyFrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainFL">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainFL"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/mainLL">
 
                 <LinearLayout
@@ -84,7 +95,8 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/secondLL2">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -176,6 +188,8 @@
 
         </ru.trandep.wordfind.MyFrameLayout>
 
+        </FrameLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,6 +215,8 @@
                 android:textSize="16sp"
                 android:id="@+id/textView4" />
         </LinearLayout>
+
+
 
         <ru.trandep.wordfind.MyButton
             android:layout_width="wrap_content"

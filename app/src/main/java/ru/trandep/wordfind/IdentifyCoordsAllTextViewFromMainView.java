@@ -22,7 +22,7 @@ public class IdentifyCoordsAllTextViewFromMainView {
 
 
 
-    public IdentifyCoordsAllTextViewFromMainView(ViewGroup v){ //на входе в метод подали контейнер View элементов
+    public IdentifyCoordsAllTextViewFromMainView(ViewGroup v){ //на входе в коструктор подали контейнер View элементов
 
 
         //знаем что в нём 1 дочерний элемент
@@ -47,10 +47,8 @@ public class IdentifyCoordsAllTextViewFromMainView {
                 this.listAllTextVeiwFromMainView.add((TextView)v3.getChildAt(j));
                 //создаём специальный объект клсса квадрант, который имеет одинаковый id, что и TextView, и хранит в себе координаты плащади TextView
                 Quadrant q1 = new Quadrant((TextView)v3.getChildAt(j), lengthFromScreenEdgeToViewVbyX,lengthFromScreenEdgeToViewVbyY);
-
             }
         }
-
     }
 
     //Метод, который возвращает ID квадранта (он в свою очередь совпадает с id TextView) по координатам
@@ -80,7 +78,7 @@ public class IdentifyCoordsAllTextViewFromMainView {
     //метод записывающий TextView в listDynamicTextViewTouched. Метод не добавляет те textView по которым уже был проведен
     public void fillinglistDynamicTextViewTouched (float x, float y){
 
-        int id = this.getIdTextViewByCoords(x,y);
+        int id = this.getIdTextViewByCoords(x,y); //TODO вместо поиска tv по форЫчу брать tv по ID
         for (TextView tv: listAllTextVeiwFromMainView){
             if (tv.getId() == id){
                 if (listDynamicTextViewTouched.contains(tv)){
